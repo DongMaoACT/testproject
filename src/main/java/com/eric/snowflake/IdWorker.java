@@ -1,8 +1,12 @@
 package com.eric.snowflake;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class IdWorker {
         //下面两个每个5位，加起来就是10位的工作机器id
         private long workerId;    //工作id
+
         private long datacenterId;   //数据id
         //12位的序列号
         private long sequence;
