@@ -18,11 +18,14 @@
     <srping.version>4.0.2.RELEASE</srping.version>
     <mybatis.version>3.2.8</mybatis.version>
     <mybatis-spring.version>1.2.2</mybatis-spring.version>
-    <mysql.version>5.1.35</mysql.version>
+<!--    <mysql.version></mysql.version>-->
+    <mysql.version>8.0.27</mysql.version>
     <druid.version>1.0.9</druid.version>
     <jstl.version>1.2</jstl.version>
     <slf4j.version>1.7.12</slf4j.version>
     <log4j.version>1.2.17</log4j.version>
+    <lombok.version>1.18.22</lombok.version>
+    <annotation.version>1.0</annotation.version>
   </properties>
   <!-- 用到的jar包 -->
   <dependencies>
@@ -33,6 +36,12 @@
       <version>${junit.version}</version>
       <!-- 表示开发的时候引入，发布的时候不会加载此包 -->
       <scope>test</scope>
+    </dependency>
+    <!-- Javax Annotation 引入@Recource注解-->
+    <dependency>
+      <groupId>javax.annotation</groupId>
+      <artifactId>jsr250-api</artifactId>
+      <version>${annotation.version}</version>
     </dependency>
     <!-- spring框架包 -->
     <dependency>
@@ -145,6 +154,12 @@
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
       <version>${slf4j.version}</version>
+    </dependency>
+<!--    lombok-->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
     </dependency>
   </dependencies>
 
