@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="SSM_Project" />
         <module name="SimpleLoginSSM" />
+        <module name="forumsystem" />
       </profile>
     </annotationProcessing>
   </component>
