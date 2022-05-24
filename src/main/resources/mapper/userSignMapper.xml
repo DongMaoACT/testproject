@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eric.mapper.UserSignMapper">
+<!--    <resultMap id="userSign" type="com.eric.pojo.UserSign">-->
+<!--        <id column="" javaType=""></id>-->
+<!--        <result column="" javaType=""/>-->
+<!--        <result column="" javaType=""/>-->
+<!--    </resultMap>-->
+    <insert id="insertQuery" >
+        insert  into user_sign
+            (userid,cur_mouth)
+        values
+            (#{id},#{stamp})
+    </insert>
+
+    <update id="updateSign">
+        update user_sign_sheet
+        set sign_sheet = #{}
+        where
+            userid = #{id}
+            and
+            cur_mouth = #{stamp}
+    </update>
+    <select id="queryByid" resultType="java.lang.String">
+        select sign_sheet from user_sign
+        where   userid = #{id}
+          and
+            cur_mouth = #{stamp}
+    </select>
+
+
+</mapper>

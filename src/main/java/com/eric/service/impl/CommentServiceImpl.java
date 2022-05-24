@@ -3,7 +3,7 @@ package com.eric.service.impl;
 import com.eric.mapper.CommentMapper;
 import com.eric.pojo.CommetData;
 import com.eric.service.CommentService;
-import com.eric.snowflake.IdWorker;
+import com.eric.vo.CommentVo;
 import com.eric.vo.UserComment;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,15 +14,16 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     private CommentMapper commentMapper;
     @Override
-    public boolean createComment(UserComment userComment){
+    public CommentVo createComment(UserComment userComment){
         CommetData commetData = new CommetData();
-        BeanUtils.copyProperties(userComment,commetData);
+
         //通过用户id生成唯一的帖子ID
         Long userid = Long.getLong(userComment.getUserid());
-        IdWorker idWorker = new IdWorker(userid,userid,userid);
-        long l = idWorker.nextId();
+
+        long commentid = userid;
         //强转long->int
-        commetData.setCommentId((int) l);
+        BeanUtils.copyProperties(userComment,commetData);
+        commetData.setCommentId((int) commentid);
         int flags = commentMapper.insertComment(commetData);
 //        try {
 //           flags =  commentMapper.insertComment(commetData);
@@ -30,7 +31,8 @@ public class CommentServiceImpl implements CommentService {
 //            System.out.println("创建帖子失败");
 //            throw new Exception();
 //        }
-        return flags==0?false:true;
+        CommentVo commentVo = UserCom2ComVo(commetData);
+        return commentVo;
     }
 
     @Override
@@ -42,5 +44,16 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public int updateComment(CommetData commetData) {
         return commentMapper.updateAll(commetData);
+    }
+
+    @Override
+    public CommentVo getComment() {
+        return null;
+    }
+
+    private CommentVo UserCom2ComVo(CommetData commetData){
+        CommentVo commentVo = new CommentVo();
+        BeanUtils.copyProperties(commetData,commentVo);
+        return commentVo;
     }
 }

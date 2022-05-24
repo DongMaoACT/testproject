@@ -33,10 +33,4 @@
         select * from comment_data
         where comment_id = #{id}
     </select>
-    <select id="queryAll" resultType="com.eric.pojo.CommetData">
-        select * from comment_data
-    </select>
-    <select id="queryAllByUserId" resultType="com.eric.pojo.CommetData">
-
-    </select>
 </mapper>

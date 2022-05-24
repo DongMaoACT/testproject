@@ -16,4 +16,6 @@ public interface CommentMapper {
     public int updateAll(CommetData commetData);
 
     public List<CommetData> queryAll();
+
+    public List<CommetData> queryAllByUserId();
 }

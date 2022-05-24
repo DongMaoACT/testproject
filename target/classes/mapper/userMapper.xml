@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 设置为 IUserMapper 接口方法提供 sql 语句配置 -->
+<mapper namespace="com.eric.mapper.IUserMapper">
+    <select id="validateUser" resultType="User">
+        select * from user where id = #{id} and password = #{password}
+    </select>
+    <!--增加用户名和密码进行注册 -->
+    <insert id="registerByUsernameAndPassword">
+        insert into user (id,password,name)
+        values (#{id},#{password},#{name})
+    </insert>
+</mapper>

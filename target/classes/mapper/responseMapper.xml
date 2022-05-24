@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eric.mapper.ResponseMapper">
+    <resultMap id="response" type="com.eric.pojo.ResponseData">
+        <id column="response_id" property="responseId"></id>
+        <result column="ruser_id" property="ruserId"></result>
+        <result column="comment_id" property="commentId"></result>
+        <result column="reply" property="reply"></result>
+        <result column="date" property="date"></result>
+    </resultMap>
+<!--private int responseId;
+    private char ruserId;
+    private int commentId;
+    private String reply;
+    private Date date;-->
+    <insert id="insertResponse" parameterType="com.eric.pojo.ResponseData">
+        insert into response_data
+            (response_id,ruser_id,comment_id,reply,date)
+        values
+            (#{responseId},#{ruserId},#{commentId},#{reply},#{date})
+    </insert>
+
+    <update id="updateAll" parameterType="com.eric.pojo.ResponseData">
+        update response_data
+        set ruser_id = #{ruserId},
+            comment_id = #{commentId},
+            reply = #{reply},
+            date = #{date}
+        where response_id = #{responseId}
+    </update>
+
+    <delete id="deleteByid" parameterType="int">
+        delete from response_data
+        where response_id = #{id}
+    </delete>
+    <select id="queryById" resultType="com.eric.pojo.ResponseData" parameterType="int">
+        select * from response_data
+        where response_id = #{id}
+    </select>
+
+</mapper>

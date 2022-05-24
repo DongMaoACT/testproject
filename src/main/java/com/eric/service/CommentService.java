@@ -1,6 +1,7 @@
 package com.eric.service;
 
 import com.eric.pojo.CommetData;
+import com.eric.vo.CommentVo;
 import com.eric.vo.UserComment;
 
 public interface CommentService {
@@ -8,7 +9,7 @@ public interface CommentService {
      * 用户创建一个帖子 帖子的id通过雪花算法随机生成
      * @return
      */
-    public boolean createComment(UserComment userComment);
+    public CommentVo createComment(UserComment userComment);
 
     /**
      * 删除帖子
@@ -23,4 +24,6 @@ public interface CommentService {
      * @return
      */
     public int updateComment(CommetData commetData);
+
+    public CommentVo getComment();
 }

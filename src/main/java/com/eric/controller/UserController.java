@@ -1,9 +1,12 @@
 package com.eric.controller;
 
 import com.eric.pojo.User;
+import com.eric.service.UserSignService;
 import com.eric.service.impl.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,7 +20,8 @@ public class UserController {
 
     @Resource
     private UserServiceImpl userService;
-
+    @Autowired
+    private UserSignService userSignService;
     @RequestMapping(value = "/validateUser", method = RequestMethod.POST)
     public ModelAndView validateUser(@RequestParam("id") String id, @RequestParam("password") String password) {
         ModelAndView mv = new ModelAndView();
@@ -40,5 +44,11 @@ public class UserController {
         System.out.println(user.getId());
         userService.Regist(user);
         return "success";
+    }
+
+    @RequestMapping("/{userid}/sign")
+    public int doSign(@PathVariable("userid")String userid){
+        int totalNum = userSignService.updateSign(userid);
+        return totalNum;
     }
 }
