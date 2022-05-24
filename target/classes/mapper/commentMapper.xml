@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eric.mapper.CommentMapper">
+    <resultMap id="commentData" type="com.eric.pojo.CommetData">
+        <id column="comment_id" property="commentId"></id>
+        <result column="cuser_id" property="cuserId"></result>
+        <result column="title" property="title"></result>
+        <result column="content" property="content"></result>
+        <result column="type" property="type"></result>
+        <result column="date" property="date"></result>
+    </resultMap>
+    <insert id="insertComment" parameterType="CommetData">
+        insert into comment_data
+            (comment_id,cuser_id,title,content,type,date)
+        values
+            (#{commentId},#{cuserId},#{title},#{content},#{type},#{date})
+    </insert>
+    <update id="updateAll" parameterType="CommetData">
+        update comment_data
+        set cuser_id = #{cuserId},
+            title = #{title},
+            content = #{content},
+            type = #{type},
+            date = #{date}
+        where comment_id = #{commentId}
+    </update>
+    <delete id="deleteById" parameterType="int">
+        delete from comment_data
+        where comment_id = #{id}
+    </delete>
+    <select id="queryById" resultMap="commentData" parameterType="int">
+        select * from comment_data
+        where comment_id = #{id}
+    </select>
+</mapper>
