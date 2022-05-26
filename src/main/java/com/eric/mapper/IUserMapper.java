@@ -18,4 +18,8 @@ public interface IUserMapper {
     void updateUserBaseInfo(User user);
     //更新详细信息
     void updateUserPlusInfo(User user);
+    //通过email查询用户
+    User getUserByEmail(@Param("user_email") String email);
+
+    User getUserById(@Param("userid")int id);
 }

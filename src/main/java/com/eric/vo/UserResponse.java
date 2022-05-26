@@ -3,16 +3,16 @@ package com.eric.vo;
 import java.util.Date;
 
 public class UserResponse {
-    private String ruserId;
+    private int ruserId;
     private int commentId;
     private String reply;
     private Date date;
 
-    public String getRuserId() {
+    public int getRuserId() {
         return ruserId;
     }
 
-    public void setRuserId(String ruserId) {
+    public void setRuserId(int ruserId) {
         this.ruserId = ruserId;
     }
 

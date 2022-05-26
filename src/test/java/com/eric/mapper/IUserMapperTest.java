@@ -14,10 +14,17 @@ public class IUserMapperTest {
     private IUserMapper IUserMapper;
     @Test
     public void createUser(){
-        User user = new User();
-        user.setPassword("123456");
-        user.setEmail("1232656314@qq.com");
-        user.setName("ewhgfaA");
-        IUserMapper.registerBaseInfo(user);
+//        User user = new User();
+//        user.setPassword("123456");
+//        user.setEmail("1232656314@qq.com");
+//        user.setName("ewhgfaA");
+//        IUserMapper.registerBaseInfo(user);
+        User user = IUserMapper.LoginUser("1232656314@qq.com", "123456");
+        System.out.println(user);
+    }
+    @Test
+    public void qeuryByid(){
+        User userById = IUserMapper.getUserById(1);
+        System.out.println(userById);
     }
 }

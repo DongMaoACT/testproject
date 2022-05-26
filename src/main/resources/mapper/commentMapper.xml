@@ -25,15 +25,19 @@
             date = #{date}
         where comment_id = #{commentId}
     </update>
-    <delete id="deleteById" parameterType="int">
+    <delete id="deleteById" parameterType="long">
         delete from comment_data
         where comment_id = #{id}
     </delete>
-    <select id="queryById" resultMap="commentData" parameterType="int">
+    <select id="queryById" resultMap="commentData" parameterType="long">
         select * from comment_data
         where comment_id = #{id}
     </select>
     <select id="queryAll" resultType="com.eric.pojo.CommetData">
         select * from comment_data
+    </select>
+    <select id="queryAllByUserId" resultType="com.eric.pojo.CommetData" >
+        select * from comment_data
+        where comment_id = #{id}
     </select>
 </mapper>

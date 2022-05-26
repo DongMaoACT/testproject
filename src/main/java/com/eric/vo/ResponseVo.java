@@ -1,18 +1,22 @@
-package com.eric.pojo;
+package com.eric.vo;
 
 import java.util.Date;
 
-public class ResponseData {
+public class ResponseVo {
     private Long responseId;
-    private Integer ruserId;//主键id
+    private String name;//用户昵称
+    private Byte portrait;//用户头像
+    private int ruserId;
     private int commentId;
     private String reply;
     private Date date;
 
     @Override
     public String toString() {
-        return "ResponseData{" +
+        return "ResponseVo{" +
                 "responseId=" + responseId +
+                ", name='" + name + '\'' +
+                ", portrait=" + portrait +
                 ", ruserId='" + ruserId + '\'' +
                 ", commentId=" + commentId +
                 ", reply='" + reply + '\'' +
@@ -26,6 +30,22 @@ public class ResponseData {
 
     public void setResponseId(Long responseId) {
         this.responseId = responseId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Byte getPortrait() {
+        return portrait;
+    }
+
+    public void setPortrait(Byte portrait) {
+        this.portrait = portrait;
     }
 
     public int getRuserId() {

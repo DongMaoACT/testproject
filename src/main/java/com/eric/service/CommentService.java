@@ -16,7 +16,7 @@ public interface CommentService {
      * @param commentId
      * @return
      */
-    public int deleteComment(int commentId);
+    public int deleteComment(Long commentId);
 
     /**
      * 普通用户更新帖子

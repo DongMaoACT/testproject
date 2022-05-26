@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class CommetData {
     private int commentId;
-    private String cuserId;
+    private int cuserId;
     private String title;
     private String content;
     private String type;
@@ -30,11 +30,11 @@ public class CommetData {
         this.commentId = commentId;
     }
 
-    public String getCuserId() {
+    public int getCuserId() {
         return cuserId;
     }
 
-    public void setCuserId(String cuserId) {
+    public void setCuserId(int cuserId) {
         this.cuserId = cuserId;
     }
 

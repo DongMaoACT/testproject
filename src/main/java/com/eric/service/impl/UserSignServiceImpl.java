@@ -7,6 +7,7 @@ import com.eric.service.UserSignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Service
@@ -14,13 +15,17 @@ public class UserSignServiceImpl implements UserSignService {
     @Autowired
     public UserSignMapper userSignMapper;
     @Override
-    public int updateSign(String userid) {
+    public int updateSign(int userid) {
+        /**
+         * 20XX XX的格式获取时间
+         **/
         String currentTime = getCurrentTime();
+        Long timeStamp = Long.valueOf(currentTime);
         /**
          * 当不存在时则创建记录
          */
-        Long timeStamp = Long.valueOf(currentTime);
-        String sheet = userSignMapper.queryByid(Integer.parseInt(userid), timeStamp);
+        String sheet = userSignMapper.queryByid(userid, timeStamp);
+
         int totalNum = 0;
         if(sheet!=null){
             /**
@@ -28,33 +33,58 @@ public class UserSignServiceImpl implements UserSignService {
              * 修改签到
              */
             String updateSheet = updateSheet(sheet);
+
             UserSign userSign = new UserSign();
-            userSign.setUserid(Integer.parseInt(userid));
+            userSign.setUserid(userid);
             userSign.setTimeStamp(timeStamp);
             userSign.setSignInSheet(updateSheet);
+
             int sign = userSignMapper.updateSign(userSign);
+
             totalNum = getAllSignNum(updateSheet);
         }else {
             /**
              * 第一次签到创建记录
              */
-            int firstSign = userSignMapper.insertQuery(Integer.parseInt(userid), timeStamp);
+            int firstSign = userSignMapper.insertQuery(userid, timeStamp);
             totalNum = 1;
         }
+
         return totalNum;
     }
+
+    /**
+     * 返回当月全部签到天数
+     * @param userid
+     * @return
+     */
+    @Override
+    public int getSignSum(int userid) {
+        String s = userSignMapper.queryByid(userid, Long.valueOf(getCurrentTime()));
+        int allSignNum = getAllSignNum(s);
+        return allSignNum;
+    }
+
     private String getCurrentTime(){
         Date date = new Date();
-        StringBuilder sb = new StringBuilder();
-        String currentTime = sb.append(String.valueOf(date.getYear())+String.valueOf(date.getMonth())).toString();
-        return currentTime.toString();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMM");
+        String format = simpleDateFormat.format(date);
+        return  format;
     }
+
+    /**
+     *
+     * @param sheet 传入更新前的
+     * @return 返回更新后的签到表
+     */
     private String updateSheet(String sheet){
         Date date = new Date();
-        int day = date.getDay();
-        char[] charSheet = sheet.toCharArray();
-        charSheet[day] = '1';
-        return charSheet.toString();
+        SimpleDateFormat mm = new SimpleDateFormat("dd");
+        char[] chars = sheet.toCharArray();
+        String s = mm.format(date).toString();
+        Integer integer = Integer.valueOf(s);
+        chars[integer-1] = '1';
+        return new String(chars);
     }
     private int getAllSignNum(String sheet){
         int result = 0;

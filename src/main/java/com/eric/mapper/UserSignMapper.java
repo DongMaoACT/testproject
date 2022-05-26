@@ -21,4 +21,6 @@ public interface UserSignMapper {
      */
     public String queryByid(@Param("id") int userid, @Param("stamp") Long timeStamp);
 
+
+
 }

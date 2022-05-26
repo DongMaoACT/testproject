@@ -8,6 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Date;
+import java.util.List;
 
 import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -18,9 +19,9 @@ public class ResponseMapperTest {
     @Test
     public void insertResponse() {
         ResponseData responseData = new ResponseData();
-        responseData.setResponseId(1);
+        responseData.setResponseId(1L);
         responseData.setCommentId(1);
-        responseData.setRuserId("11122");
+        responseData.setRuserId(1);
         responseData.setReply("回复");
         responseData.setDate(new Date());
         int i = responseMapper.insertResponse(responseData);
@@ -29,7 +30,7 @@ public class ResponseMapperTest {
 
     @Test
     public void deleteByid() {
-        int i = responseMapper.deleteByid(1);
+        int i = responseMapper.deleteByid(1L);
     }
     @Test
     public void queryAll(){
@@ -39,12 +40,19 @@ public class ResponseMapperTest {
     @Test
     public void updateAll(){
         ResponseData responseData = new ResponseData();
-        responseData.setResponseId(1);
+        responseData.setResponseId(1L);
         responseData.setCommentId(1);
-        responseData.setRuserId("11122");
+        responseData.setRuserId(1);
         responseData.setReply("更新回复测试");
         responseData.setDate(new Date());
         int i = responseMapper.updateAll(responseData);
         System.out.println(i);
+    }
+    @Test
+    public void queryById(){
+        List<ResponseData> responseData = responseMapper.queryByCommentId(1);
+        for(ResponseData responseData1:responseData){
+            System.out.println(responseData1);
+        }
     }
 }

@@ -18,16 +18,22 @@
         <result column="user_location" property="location"></result>
     </resultMap>
     <!-- 通过邮箱和密码查找用户，登陆验证 -->
-    <select id="LoginUser" resultType="User" parameterType="User">
+    <select id="LoginUser" resultMap="user" >
         select * from user_base_data as a left join user_plus_data as b on a.id = b.order_id where a.user_email = #{user_email} and a.user_password = #{user_password}
     </select>
     <!-- 通过邮箱查找用户 -->
-    <select id="GetUserByEmail" resultType="User">
+    <select id="GetUserByEmail" resultMap="user">
         select * from user_base_data as a left join user_plus_data as b on a.id = b.order_id where a.user_email = #{email}
     </select>
     <!-- 通过姓名查找用户 -->
-    <select id="GetUserByName" resultType="User">
+    <select id="GetUserByName" resultMap="user">
         select * from user_base_data as a left join user_plus_data as b on a.id = b.order_id where a.user_name = #{name}
+    </select>
+    <select id="getUserByEmail" resultType="com.eric.pojo.User" parameterType="java.lang.String">
+        select * from user_base_data as a left join user_plus_data as b on a.id = b.order_id where a.user_email = #{email}
+    </select>
+    <select id="getUserById" resultMap="user" parameterType="int">
+        select * from user_base_data as a left join user_plus_data as b on a.id = b.order_id where a.id = #{userid}
     </select>
     <!-- 用户基本信息更新 -->
     <update id="updateUserBaseInfo" parameterType="User">

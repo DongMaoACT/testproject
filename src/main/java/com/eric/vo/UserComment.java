@@ -14,17 +14,17 @@ import java.util.Date;
  */
 
 public class UserComment {
-    private String cuserid;
+    private int cuserid;
     private String title;
     private String content;
     private String type;
     private Date date;
 
-    public String getUserid() {
+    public int getUserid() {
         return cuserid;
     }
 
-    public void setUserid(String userid) {
+    public void setUserid(int userid) {
         this.cuserid = userid;
     }
 

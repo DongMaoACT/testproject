@@ -7,5 +7,12 @@ public interface UserSignService {
      * @return 返回当月签到天数
      * @param userid 用户id
      */
-    public int updateSign(String userid);
+    public int updateSign(int userid);
+
+    /**
+     * 通过用户ID查询当前月份签到总天数
+     * @param userid
+     * @return
+     */
+    public int getSignSum(int userid);
 }

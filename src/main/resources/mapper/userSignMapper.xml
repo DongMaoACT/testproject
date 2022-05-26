@@ -13,6 +13,13 @@
         values
             (#{id},#{stamp})
     </insert>
+    <update id="updateSign" parameterType="com.eric.pojo.UserSign">
+        update user_sign
+        set sign_sheet = #{signInSheet}
+        where userid = #{userid}
+          and
+            cur_mouth = #{timeStamp}
+    </update>
 
 
     <select id="queryByid" resultType="java.lang.String">

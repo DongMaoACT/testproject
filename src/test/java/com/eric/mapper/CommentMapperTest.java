@@ -18,8 +18,8 @@ public class CommentMapperTest {
     @Test
     public void insertComment() {
         CommetData commetData = new CommetData();
-        commetData.setCommentId(1);
-        commetData.setCuserId("11122");
+
+        commetData.setCuserId(1);
         commetData.setContent("这是第一条Comment测试");
         commetData.setTitle("第一条标题");
         commetData.setType("学习");
@@ -30,20 +30,20 @@ public class CommentMapperTest {
 
     @Test
     public void deleteById() {
-        int i = commentMapper.deleteById(1);
+        int i = commentMapper.deleteById(2L);
         System.out.println(i);
     }
 
     @Test
     public void querybyId(){
-        CommetData commetData = commentMapper.queryById(1);
+        CommetData commetData = commentMapper.queryById(1L);
         System.out.println(commetData);
     }
     @Test
     public void updateAll(){
         CommetData commetData = new CommetData();
-        commetData.setCommentId(1);
-        commetData.setCuserId("11122");
+
+        commetData.setCuserId(1);
         commetData.setContent("修改测试");
         commetData.setTitle("标题修改");
         commetData.setType("学习");

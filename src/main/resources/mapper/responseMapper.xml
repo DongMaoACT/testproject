@@ -34,9 +34,13 @@
         delete from response_data
         where response_id = #{id}
     </delete>
-    <select id="queryById" resultType="com.eric.pojo.ResponseData" parameterType="int">
+    <select id="queryById" resultMap="response" parameterType="int">
         select * from response_data
         where response_id = #{id}
+    </select>
+    <select id="queryByCommentId" resultMap="response" parameterType="int">
+        select * from  response_data
+        where   comment_id = #{comId}
     </select>
 
 </mapper>

@@ -46,8 +46,13 @@ public class UserController {
         return "success";
     }
 
+    /**
+     * 额外需求： 签到提高用户积分
+     * @param userid
+     * @return
+     */
     @RequestMapping("/{userid}/sign")
-    public int doSign(@PathVariable("userid")String userid){
+    public int doSign(@PathVariable("userid")int userid){
         int totalNum = userSignService.updateSign(userid);
         return totalNum;
     }
