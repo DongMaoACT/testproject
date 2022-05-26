@@ -25,7 +25,7 @@ public class UserController {
     @RequestMapping(value = "/validateUser", method = RequestMethod.POST)
     public ModelAndView validateUser(@RequestParam("id") String id, @RequestParam("password") String password) {
         ModelAndView mv = new ModelAndView();
-        User user = userService.validateUser(id, password);
+        User user = userService.LoginUser(id, password);
         if (user != null) {
             mv.addObject("user", user);
             mv.setViewName("success");

@@ -14,14 +14,7 @@
             (#{id},#{stamp})
     </insert>
 
-    <update id="updateSign">
-        update user_sign_sheet
-        set sign_sheet = #{}
-        where
-            userid = #{id}
-            and
-            cur_mouth = #{stamp}
-    </update>
+
     <select id="queryByid" resultType="java.lang.String">
         select sign_sheet from user_sign
         where   userid = #{id}
