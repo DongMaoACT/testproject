@@ -14,5 +14,5 @@ public interface ResponseMapper {
 
     public int updateAll(ResponseData responseData);
 
-    public List<ResponseData> queryByCommentId(@Param("comId")int commentId);
+    public List<ResponseData> queryByCommentId(@Param("comId")Long commentId);
 }

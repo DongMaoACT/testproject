@@ -14,5 +14,5 @@ public interface ResponseService {
 
     public int deleteAll(Long responseId);
 
-    public List<ResponseVo> queryAllByCommentId(int commentid);
+    public List<ResponseVo> queryAllByCommentId(Long commentid);
 }

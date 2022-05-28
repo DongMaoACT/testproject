@@ -37,7 +37,7 @@ public class ResponseServiceTest {
     }
     @Test
     public void queryAllByCommentId(){
-        List<ResponseVo> responseVos = responseService.queryAllByCommentId(1);
+        List<ResponseVo> responseVos = responseService.queryAllByCommentId(1L);
         for(ResponseVo r:responseVos){
             System.out.println(responseVos);
         }

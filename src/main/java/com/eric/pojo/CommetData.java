@@ -3,7 +3,7 @@ package com.eric.pojo;
 import java.util.Date;
 
 public class CommetData {
-    private int commentId;
+    private Long commentId;
     private int cuserId;
     private String title;
     private String content;
@@ -22,11 +22,11 @@ public class CommetData {
                 '}';
     }
 
-    public int getCommentId() {
+    public Long getCommentId() {
         return commentId;
     }
 
-    public void setCommentId(int commentId) {
+    public void setCommentId(Long commentId) {
         this.commentId = commentId;
     }
 

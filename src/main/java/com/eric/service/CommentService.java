@@ -4,6 +4,8 @@ import com.eric.pojo.CommetData;
 import com.eric.vo.CommentVo;
 import com.eric.vo.UserComment;
 
+import java.util.List;
+
 public interface CommentService {
     /**
      * 用户创建一个帖子 帖子的id通过雪花算法随机生成
@@ -26,4 +28,6 @@ public interface CommentService {
     public int updateComment(CommetData commetData);
 
     public CommentVo getComment();
+
+    public List<CommentVo> getAllCommentByUserID(int userid);
 }

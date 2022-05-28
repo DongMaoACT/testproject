@@ -50,7 +50,7 @@ public class ResponseMapperTest {
     }
     @Test
     public void queryById(){
-        List<ResponseData> responseData = responseMapper.queryByCommentId(1);
+        List<ResponseData> responseData = responseMapper.queryByCommentId(1L);
         for(ResponseData responseData1:responseData){
             System.out.println(responseData1);
         }

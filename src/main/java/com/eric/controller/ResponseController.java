@@ -33,7 +33,7 @@ public class ResponseController {
     }
 
     @RequestMapping("/{commentid}")
-    public List<ResponseVo> getResponseByComId(@RequestParam("commentid") int commentid){
+    public List<ResponseVo> getResponseByComId(@RequestParam("commentid") Long commentid){
         return responseService.queryAllByCommentId(commentid);
     }
     @RequestMapping("/delete/{responseid}")

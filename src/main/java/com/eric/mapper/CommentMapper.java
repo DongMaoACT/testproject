@@ -17,5 +17,5 @@ public interface CommentMapper {
 
     public List<CommetData> queryAll();
 
-    public List<CommetData> queryAllByUserId(@Param("id") Long id);
+    public List<CommetData> queryAllByUserId(@Param("id") int id);
 }

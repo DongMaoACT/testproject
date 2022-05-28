@@ -64,7 +64,7 @@ public class ResponseServiceImpl implements ResponseService {
      * @return 帖子中全部回复
      */
     @Override
-    public List<ResponseVo> queryAllByCommentId(int commentid) {
+    public List<ResponseVo> queryAllByCommentId(Long commentid) {
         List<ResponseData> responseData = responseMapper.queryByCommentId(commentid);
         List<ResponseVo> responseVoList = new ArrayList<>();
         for(ResponseData r:responseData){
