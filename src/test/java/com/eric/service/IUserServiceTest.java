@@ -14,8 +14,8 @@ public class IUserServiceTest {
     private IUserService IUserService;
     @Test
     public void LoginUser() {
-        String email = "1520526911@qq.com";
-        String password = "admin";
+        String email = "1232656314@qq.com";
+        String password = "123456";
         User user = IUserService.LoginUser(email,password);
         System.out.println(user.getId());
         System.out.println(user.getEmail());

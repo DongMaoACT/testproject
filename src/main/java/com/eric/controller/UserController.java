@@ -1,38 +1,37 @@
 package com.eric.controller;
 
 import com.eric.pojo.User;
+import com.eric.pojo.UserResult;
 import com.eric.service.UserSignService;
-import com.eric.service.impl.UserServiceImpl;
+import com.eric.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.annotation.Resource;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
-    @Resource
-    private UserServiceImpl userService;
+    @Autowired
+    private IUserService userService;
     @Autowired
     private UserSignService userSignService;
-    @RequestMapping(value = "/validateUser", method = RequestMethod.POST)
-    public ModelAndView validateUser(@RequestParam("id") String id, @RequestParam("password") String password) {
-        ModelAndView mv = new ModelAndView();
-        User user = userService.LoginUser(id, password);
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @ResponseBody
+    public UserResult validateUser(@RequestBody User Ui) {
+        UserResult result  = new UserResult();
+        String em = Ui.getEmail();
+        User user = userService.LoginUser(em, Ui.getPassword());
+
+        System.out.println(user);
         if (user != null) {
-            mv.addObject("user", user);
-            mv.setViewName("success");
+            result.setUser(user);
+            result.setStatus(1);
         }else {
-            mv.setViewName("fail");
+            result.setStatus(0);
         }
-        return mv;
+        return result;
     }
     @RequestMapping("/register")
     public String regist(){
