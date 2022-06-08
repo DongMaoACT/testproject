@@ -39,8 +39,8 @@ public class IUserServiceTest {
         user.setName("ewhgfaA");
         user.setPhone("12323423534");
         user.setLocation("西安");
-        int i = IUserService.updateUserAllInfo(user);
-        System.out.println(i);
+        User cur = IUserService.updateUserAllInfo(user);
+        System.out.println(cur);
     }
 }
 

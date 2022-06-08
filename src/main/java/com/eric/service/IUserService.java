@@ -26,6 +26,8 @@ public interface IUserService {
      * @return int
      */
 
-    int updateUserAllInfo(User user); //用户信息全部更新
+    User updateUserAllInfo(User user); //用户信息全部更新
+
+    User getUserById(int id);//通过id获得用户信息
 
 }

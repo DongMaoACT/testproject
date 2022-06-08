@@ -10,20 +10,41 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/user")
 public class UserController {
 
+    private UserResult result;
     @Autowired
     private IUserService userService;
     @Autowired
     private UserSignService userSignService;
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+
+    @RequestMapping(value = "/user/login", method = RequestMethod.POST)
     @ResponseBody
     public UserResult validateUser(@RequestBody User Ui) {
-        UserResult result  = new UserResult();
+        result  = new UserResult();
         String em = Ui.getEmail();
         User user = userService.LoginUser(em, Ui.getPassword());
 
+        System.out.println(user);
+        if (user != null) {
+            result.setUser(user);
+            result.setStatus(1);
+        }else {
+            result.setStatus(0);
+        }
+        return result;
+    }
+
+    @RequestMapping(value = "/user", method = RequestMethod.PUT)
+    @ResponseBody
+    public UserResult updateUser(@RequestBody User Ui) {
+        result  = new UserResult();
+        User curUser = userService.getUserById(Ui.getId());
+        //替换编辑信息
+        curUser.setName(Ui.getName());
+        curUser.setLocation(Ui.getLocation());
+        curUser.setIntroduce(Ui.getIntroduce());
+        User user = userService.updateUserAllInfo(curUser);
         System.out.println(user);
         if (user != null) {
             result.setUser(user);

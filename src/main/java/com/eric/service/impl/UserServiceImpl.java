@@ -45,16 +45,18 @@ public class UserServiceImpl implements IUserService {
         return 0;
     }
     @Override
-    public int updateUserAllInfo(User user){
+    public User updateUserAllInfo(User user){
         User existUser =userMapper.GetUserByEmail(user);
         if (existUser != null) {
             user.setId(existUser.getId());
             userMapper.updateUserBaseInfo(user);
             userMapper.updateUserPlusInfo(user);
-        }else {
-            return -1;
         }
-        return 0;
+        return userMapper.getUserById(user.getId());
+    }
+    @Override
+    public User getUserById(int id){
+        return userMapper.getUserById(id);
     }
 
 

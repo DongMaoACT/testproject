@@ -19,31 +19,15 @@ $(document).ready(function () {
 
 
 function updateInfo(user) {
-    $('#nickname').html(user.name);
-    updateGender(user.gender);
+    $('#nickname').val(user.name);
+    $('#rank').html(user.rank)
+    $('#input-idbirth').html(user.idbirth);
     $('#input-show').val(user.introduce);
-    $('#input-work').val(user.workPlace);
+    $('#input-location').val(user.location);
     $('#preview').attr('src', user.avatar);
 }
 
-/**
- * 更新gender信息
- */
-function updateGender(gender) {
-    if (gender == '男') {
-        $('#gender0').attr('checked', false);
-        $('#gender1').attr('checked', true);
-        $('#gender2').attr('checked', false);
-    } else if (gender == '女') {
-        $('#gender0').attr('checked', false);
-        $('#gender1').attr('checked', false);
-        $('#gender2').attr('checked', true);
-    } else if (gender == '保密') {
-        $('#gender0').attr('checked', true);
-        $('#gender1').attr('checked', false);
-        $('#gender2').attr('checked', false);
-    }
-}
+
 
 function upload(file) {
     var objUrl = getObjectURL(file);
@@ -88,15 +72,16 @@ function update() {
     $.ajax({
         url: "http://localhost:8080/user",
         dataType: "json",
+        contentType: "application/json",
         async: true,
         type: "put",
-        data: {
+        data: JSON.stringify({
             'id': id,
-            'avatar': avatar,
-            'gender': $("input[name='docInlineRadio'][checked]").val(),
-            'workPlace': $('#input-work').val(),
-            'description': $('#input-show').val()
-        },
+            'name': $('#nickname').val(),
+            'location': $('#input-location').val(),
+            'introduce': $('#input-show').val(),
+            'portrait': avatar,
+        }),
         success: function (res) {
             if (res.status) {
                 sessionStorage.user = JSON.stringify(res.data);
